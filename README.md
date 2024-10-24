@@ -1,8 +1,6 @@
 # Oefening 5: Snake
 
-Maak het spel Snake met behulp van generieke Lists, de Point klasse,
-
-DispatcherTimer en de Canvas layout.
+Maak het spel Snake met behulp van generieke Lists, de Point klasse, DispatcherTimer en de Canvas layout.
 
 ![Afbeelding met schermopname, software, Multimediasoftware,
 Besturingssysteem Automatisch gegenereerde
@@ -11,95 +9,42 @@ beschrijving](./media/image1.png)
 **Uitleg** :
 
 1.  Canvas:
-
 Canvas laat ons toe om het venster te structureren in coördinaten.
-Hiervoor
-
-gebruiken we de Canvas.SetBottom en Canvas.SetLeft methodes om de
-elementen
-
-in het Canvas te positioneren.
+Hiervoor gebruiken we de Canvas.SetBottom en Canvas.SetLeft methodes om de elementen in het Canvas te positioneren.
 
 2.  Point:
-
-De Point klasse kan gebruikt worden om de coördinaten van de elementen
-bij te
-
-houden die verschijnen op het scherm. Een Point bestaat zowel uit een X-
-als een
-
-Y-waarde.
+De Point klasse kan gebruikt worden om de coördinaten van de elementen bij te houden die verschijnen op het scherm. Een Point bestaat zowel uit een X als een Y waarde.
 
 Voorbeeldcode:
 
 ```cs
-
 Point p = new Point();
-
 int x = 10;
-
 int y = 10;
-
 Point pointWithValues = new Point(x, y);
-
 p.X = x;
-
 ```
 
 3.  DispatcherTimer:
-
-De DispatcherTimer laat ons toe om de slang te laten bewegen over het
-scherm.
-
-Meer specifiek zal de dispatcher er voor zorgen dat we iedere
-"game-tick" de huidige
-
-status van het scherm beschrijven en tekenen.
+De DispatcherTimer laat ons toe om de slang te laten bewegen over het scherm. Meer specifiek zal de dispatcher er voor zorgen dat we iedere "game-tick" de huidige status van het scherm beschrijven en tekenen.
 
 4.  Lists:
-
-Met lists kunnen we bijhouden welke elementen er op het scherm staan.
-Verder laat
-
-het ons toe om makkelijk nieuwe elementen toe te voegen en te
-verwijderen.
-
-**\
-**
+Met lists kunnen we bijhouden welke elementen er op het scherm staan. Verder laat het ons toe om makkelijk nieuwe elementen toe te voegen en te verwijderen.
 
 **Stappenplan** :
 
-Met behulp van een stappenplan worden er structureel methodes en lokale
-variabelen uitgelijnd die vorm geven aan het uiteindelijke programma.
-
 1.  Tekenen van een Slang:
-
     a.  Lokale Variabelen:
+-   List van Points (List\<Point\>) die het lichaam van de slang voorstellen. De punten representeren de X en Y coördinaten die gebruikt worden met de Canvas methodes SetBottom (= marge ten opzichte van de onderkant) en SetLeft (= marge ten opzichte van de linkerkant)
+-   De DispatcherTimer zal er voor zorgen dat we iedere X milliseconden een update van de slang kunnen tekenen op het Canvas.
 
--   List van Points (List\<Point\>) die het lichaam van de slang
-    voorstellen. De punten representeren de X en Y coördinaten die
-    gebruikt worden met de Canvas methodes SetBottom (= marge ten
-    opzichte van de onderkant) en SetLeft (= marge ten opzichte van de
-    linkerkant)
-
--   De DispatcherTimer zal er voor zorgen dat we iedere X milliseconden
-    een update van de slang kunnen tekenen op het Canvas.
-
-    a.  Methodes:
-
-
+    b.  Methodes:
 -   StartGame() methode die het spel klaar zet:
-
     -   Textblocken een gepaste inhoud geven
-
     -   List clearen
-
     -   Drie punten toevoegen aan het slangenlichaam.
-
     -   Start dispatcher
-
--   DrawGame() methode waarin er met een foreach over ieder punt van het
-    slangenlichaam geïtereerd wordt om het te tekenen op het canvas.\
+-   DrawGame() methode waarin er met een foreach over ieder punt van het slangenlichaam geïtereerd wordt om het te tekenen op het canvas.\
     Met snakeWindow.Children.Clear(); kan je de elementen uit het canvas
     verwijderen.\
     Met snakeWindow.Children.Add() kan je elementen toevoegen.\
