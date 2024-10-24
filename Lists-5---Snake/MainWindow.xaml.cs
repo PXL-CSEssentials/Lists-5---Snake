@@ -24,7 +24,7 @@ namespace Lists_5___Snake
         List<Point> _snakeBody = new List<Point>();
         DispatcherTimer _timer = new DispatcherTimer();
         int _celSize = 20;
-        private int _maximumNumberOfEatingBlocks = 10;
+        private int _maximumNumberOfFoodBlocks = 10;
         private int _maximumBonus = 2;
         readonly List<Point> _food = new List<Point>();
         readonly List<Point> _bonusses = new List<Point>();
@@ -155,7 +155,7 @@ namespace Lists_5___Snake
 
         private void DrawGame()
         {
-            spawnEatingBlock();
+            SpawnFoodBlock();
             snakeWindow.Children.Clear();
             foreach (Point positionSnakePart in _snakeBody)
             {
@@ -167,14 +167,14 @@ namespace Lists_5___Snake
                 Canvas.SetLeft(snakePart, positionSnakePart.X);
                 snakeWindow.Children.Add(snakePart);
             }
-            foreach (Point eatingBlock in _food)
+            foreach (Point foodBlock in _food)
             {
                 Ellipse food = new Ellipse();
                 food.Fill = Brushes.Orange;
                 food.Width = _celSize;
                 food.Height = _celSize;
-                Canvas.SetBottom(food, eatingBlock.Y);
-                Canvas.SetLeft(food, eatingBlock.X);
+                Canvas.SetBottom(food, foodBlock.Y);
+                Canvas.SetLeft(food, foodBlock.X);
                 snakeWindow.Children.Add(food);
             }
             foreach (Point bonusBlock in _bonusses)
@@ -218,22 +218,22 @@ namespace Lists_5___Snake
             return false;
         }
 
-        private void spawnEatingBlock()
+        private void SpawnFoodBlock()
         {
-            if (_food.Count < _maximumNumberOfEatingBlocks)
+            if (_food.Count < _maximumNumberOfFoodBlocks)
             {
                 //Do while controle op einde pas inbouwen!
-                Point eatingPoint = new Point();
+                Point foodPoint = new Point();
                 do
                 {
                     int posX = _rand.Next(0, (int)(_maxX / _celSize));
                     int posY = _rand.Next(0, (int)(_maxY / _celSize));
                     posX *= _celSize;
                     posY *= _celSize;
-                    eatingPoint.X = posX;
-                    eatingPoint.Y = posY;
-                } while (_bonusses.Contains(eatingPoint) && _food.Contains(eatingPoint) && _snakeBody.Contains(eatingPoint));
-                _food.Add(eatingPoint);
+                    foodPoint.X = posX;
+                    foodPoint.Y = posY;
+                } while (_bonusses.Contains(foodPoint) && _food.Contains(foodPoint) && _snakeBody.Contains(foodPoint));
+                _food.Add(foodPoint);
             }
             if (_bonusses.Count < _maximumBonus)
             {
